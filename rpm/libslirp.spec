@@ -12,22 +12,17 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-# Please submit bugfixes or comments via https://bugs.opensuse.org/
-#
-
-
 %define libname libslirp0
 
 Name:           libslirp
-Version:        4.8.0+2
-Release:        0
+Version:        4.8.0
+Release:        1
 Summary:        A general purpose TCP-IP emulator
 License:        MIT
 Group:          System/Libraries
 URL:            https://gitlab.freedesktop.org/slirp/%{name}
 Source0:        %{name}-%{version}.tar.xz
 BuildRequires:  gcc
-BuildRequires:  git-core
 BuildRequires:  glib2-devel
 BuildRequires:  meson
 
@@ -53,7 +48,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}
+%autosetup -p1 -n %{name}-%{version}/%{name}
 
 %build
 %meson
@@ -67,8 +62,6 @@ developing applications that use %{name}.
 %postun -n %{libname} -p /sbin/ldconfig
 
 %files -n %{libname}
-%license COPYRIGHT
-%doc README.md CHANGELOG.md
 %{_libdir}/%{name}.so.0*
 
 %files devel
